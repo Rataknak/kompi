@@ -1,9 +1,8 @@
 package com.example.kompi_app.screen
 
-import androidx.activity.compose.setContent
-import androidx.compose.runtime.Composable
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 import androidx.compose.runtime.*
 
 class MainActivity : ComponentActivity() {
@@ -20,8 +19,14 @@ fun MyApp() {
     var currentScreen by remember { mutableStateOf("welcome") }
 
     when (currentScreen) {
-        "welcome" -> WelcomeScreen(onCreateAccount = {currentScreen = "login"})
-        "login" -> LoginScreen(onLoginClick = {currentScreen = "Homepage"})
-        "Homepage" -> HomeScreen()
+        "welcome" -> WelcomeScreen(
+            onCreateAccount = { currentScreen = "login" }
+        )
+        "login" -> LoginScreen(
+            onLoginClick = { currentScreen = "main" }
+        )
+        "main" -> MainScreen(
+            onLogout = { currentScreen = "welcome" }
+        )
     }
 }

@@ -64,7 +64,6 @@ fun HomeScreen() {
         )
     }
 
-    var selectedTab by remember { mutableStateOf(0) }
     val scrollState = rememberScrollState()
     val elevation by animateDpAsState(
         targetValue = if (scrollState.value > 0) 8.dp else 0.dp,
@@ -90,26 +89,15 @@ fun HomeScreen() {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // Profile with gradient
-                Box(
-                    modifier = Modifier
-                        .size(52.dp)
-                        .clip(CircleShape)
-                        .background(
-                            Brush.horizontalGradient(
-                                colors = listOf(Color(0xFF0C3B2E), Color(0xFF1B5E20))
-                            )
-                        )
-                        .clickable { /* Profile click */ },
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = "R",
-                        color = Color.White,
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold
+                    Image(
+                        painter = painterResource(id = R.drawable.logo),
+                        contentDescription = "App logo",
+                        modifier = Modifier
+                            .size(60.dp)
+                            .clip(CircleShape),
+                        contentScale = ContentScale.Crop
                     )
-                }
+
 
                 // Icons with badges
                 Row(verticalAlignment = Alignment.CenterVertically) {
@@ -152,7 +140,6 @@ fun HomeScreen() {
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(scrollState)
-                .weight(1f)
         ) {
             // Welcome Section
             Column(
@@ -174,6 +161,9 @@ fun HomeScreen() {
                 )
             }
 
+            // Quick Stats Section
+
+
             // Featured Story Section with enhanced design
             Card(
                 modifier = Modifier
@@ -189,7 +179,7 @@ fun HomeScreen() {
                         .height(280.dp)
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.cover),
+                        painter = painterResource(id = R.drawable.down),
                         contentDescription = "Tom Teav",
                         modifier = Modifier
                             .fillMaxSize(),
@@ -267,18 +257,6 @@ fun HomeScreen() {
                         }
                     }
                 }
-            }
-
-            // Quick Stats Section
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 24.dp, vertical = 20.dp),
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ) {
-                StatItem(count = "12", label = "Reading")
-                StatItem(count = "24", label = "Completed")
-                StatItem(count = "156", label = "Minutes")
             }
 
             // Recommended Section with enhanced header
@@ -401,9 +379,6 @@ fun HomeScreen() {
             // Add some bottom padding
             Spacer(modifier = Modifier.height(80.dp))
         }
-
-        // Enhanced Bottom Navigation
-        BottomNavigationBar(selectedTab = selectedTab, onTabSelected = { selectedTab = it })
     }
 }
 
@@ -555,59 +530,6 @@ fun StatItem(count: String, label: String) {
             color = Color(0xFF666666),
             fontWeight = FontWeight.Medium
         )
-    }
-}
-
-@Composable
-fun BottomNavigationBar(selectedTab: Int, onTabSelected: (Int) -> Unit) {
-    val items = listOf("Home", "Discover", "Favorites", "Profile")
-    val icons = listOf(
-        Icons.Default.Home,
-        Icons.Default.Search,
-        Icons.Default.Favorite,
-        Icons.Default.Person
-    )
-
-    Surface(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(65.dp),
-        tonalElevation = 4.dp,
-        shadowElevation = 4.dp
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.White),
-            horizontalArrangement = Arrangement.SpaceAround,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            items.forEachIndexed { index, item ->
-                val isSelected = selectedTab == index
-
-                Column(
-                    modifier = Modifier
-                        .clickable { onTabSelected(index) }
-                        .padding(horizontal = 12.dp, vertical = 8.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(2.dp)
-                ) {
-                    Icon(
-                        imageVector = icons[index],
-                        contentDescription = item,
-                        tint = if (isSelected) Color(0xFF0C3B2E) else Color(0xFF757575),
-                        modifier = Modifier.size(22.dp)
-                    )
-
-                    Text(
-                        text = item,
-                        fontSize = 10.sp,
-                        fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
-                        color = if (isSelected) Color(0xFF0C3B2E) else Color(0xFF757575)
-                    )
-                }
-            }
-        }
     }
 }
 
