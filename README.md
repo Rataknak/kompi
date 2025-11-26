@@ -2,15 +2,71 @@
 
 An Android application built with Jetpack Compose for managing books with authentication features.
 
+## Table of Contents
+
+- [Quick Start](#quick-start)
+- [Technologies Used](#technologies-used)
+- [Prerequisites](#prerequisites)
+- [How to Run the Project](#how-to-run-the-project)
+  - [Method 1: Using Android Studio (Recommended)](#method-1-using-android-studio-recommended)
+  - [Method 2: Using Command Line](#method-2-using-command-line)
+  - [Method 3: Build APK for Manual Installation](#method-3-build-apk-for-manual-installation)
+- [Project Structure](#project-structure)
+- [Key Features](#key-features)
+- [API Configuration](#api-configuration)
+- [Troubleshooting](#troubleshooting)
+- [Testing](#testing)
+- [Building for Production](#building-for-production)
+- [Dependencies](#dependencies)
+- [Contributing](#contributing)
+- [Development Information](#development-information)
+- [License](#license)
+- [Contact](#contact)
+
+## Quick Start
+
+```powershell
+# Clone the repository
+git clone [repository-url]
+
+# Navigate to project directory
+cd kompi
+
+# Build the project
+.\gradlew.bat build
+
+# Install on connected device
+.\gradlew.bat installDebug
+```
+
+**Note**: Ensure your backend API server is running on `localhost:8080` before launching the app.
+
 ## Technologies Used
 
+### Core Technologies
 - **Language**: Kotlin 2.0.21
 - **Platform**: Android (Min SDK 24, Target SDK 34)
 - **UI Framework**: Jetpack Compose with Material3
 - **Architecture**: MVVM (Model-View-ViewModel)
-- **Networking**: Retrofit 2.9.0, OkHttp, Gson
-- **Async Operations**: Kotlin Coroutines & Flow
 - **Build System**: Gradle 8.2.1 with Kotlin DSL
+
+### Libraries & Frameworks
+- **Networking**: 
+  - Retrofit 2.9.0 - REST API client
+  - OkHttp 4.11.0 - HTTP client with logging interceptor
+  - Gson 2.10.1 - JSON serialization/deserialization
+- **Jetpack Components**:
+  - Compose BOM - UI toolkit
+  - Navigation Compose 2.7.3 - Navigation framework
+  - Lifecycle & ViewModel 2.6.2 - Lifecycle management
+  - Activity Compose - Activity integration
+- **Async Operations**: 
+  - Kotlin Coroutines - Asynchronous programming
+  - Flow - Reactive data streams
+- **Testing**:
+  - JUnit - Unit testing
+  - Espresso - UI testing
+  - Compose UI Test - Compose testing
 
 ## Prerequisites
 
@@ -214,9 +270,27 @@ For complete dependency list, see `app/build.gradle.kts` and `gradle/libs.versio
 
 ## License
 
-[Add your license information here]
+This project is currently not licensed. Please contact the repository owner for usage permissions.
+
+## Contributing
+
+Contributions are welcome! To contribute:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## Development Information
+
+- **Last Updated**: November 26, 2025
+- **Application Package**: `com.example.kompi_app`
+- **Version**: 1.0 (Version Code: 1)
+- **Minimum Android Version**: 7.0 Nougat (API 24)
+- **Target Android Version**: Android 14 (API 34)
 
 ## Contact
 
-[Add your contact information here]
+For questions or support, please contact the development team or open an issue in the repository.
 
