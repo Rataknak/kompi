@@ -17,10 +17,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.kompi_app.FavoritesScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(onLogout: () -> Unit = {}) {
+fun MainScreen(
+    onLogout: () -> Unit = {},
+    onNotificationClick: () -> Unit = {}
+) {
     var selectedTab by remember { mutableStateOf(0) }
 
     Scaffold(
@@ -37,10 +41,10 @@ fun MainScreen(onLogout: () -> Unit = {}) {
                 .padding(paddingValues)
         ) {
             when (selectedTab) {
-                0 -> HomeScreen()
+                0 -> HomeScreen(onNotificationClick = onNotificationClick)
                 1 -> DiscoverScreen()
                 2 -> FavoritesScreen()
-                3 -> ProfileScreen(onLogout = onLogout)
+                3 -> ProfileScreen()
             }
         }
     }

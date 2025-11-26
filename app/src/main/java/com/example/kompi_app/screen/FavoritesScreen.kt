@@ -9,7 +9,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.*
@@ -76,7 +76,7 @@ fun FavoritesScreen(onBackClick: () -> Unit = {}) {
         ) {
             items(favoriteBooks) { book ->
                 FavoriteBookItem(book)
-                HorizontalDivider(
+                Divider(
                     color = Color.LightGray.copy(alpha = 0.3f),
                     thickness = 1.dp,
                     modifier = Modifier.padding(top = 16.dp)
@@ -109,7 +109,7 @@ fun FavoritesTopBar(onBackClick: () -> Unit) {
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                    imageVector = Icons.Filled.ArrowBack,
                     contentDescription = "Back",
                     tint = Color.Black,
                     modifier = Modifier.size(20.dp)
@@ -126,7 +126,7 @@ fun FavoritesTopBar(onBackClick: () -> Unit) {
                 textAlign = TextAlign.Center
             )
         }
-        HorizontalDivider(color = Color.LightGray.copy(alpha = 0.3f), thickness = 1.dp)
+        Divider(color = Color.LightGray.copy(alpha = 0.3f), thickness = 1.dp)
     }
 }
 

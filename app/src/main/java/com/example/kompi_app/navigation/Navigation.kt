@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.kompi_app.screen.HomeScreen
 import com.example.kompi_app.screen.DiscoverScreen
-import com.example.kompi_app.screen.FavoritesScreen
+import com.example.kompi_app.FavoritesScreen
 import com.example.kompi_app.screen.ProfileScreen
 
 sealed class Screen(val route: String) {

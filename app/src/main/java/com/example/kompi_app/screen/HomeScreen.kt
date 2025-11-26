@@ -53,7 +53,7 @@ data class Book(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(onNotificationClick: () -> Unit = {}) {
     val books = remember {
         listOf(
             Book(1, "AICHEMIST", "PAULO COELHO", R.drawable.book1, 4.7f, true),
@@ -120,7 +120,7 @@ fun HomeScreen() {
                             tint = Color(0xFF0C3B2E),
                             modifier = Modifier
                                 .size(36.dp)
-                                .clickable { /* Notification click */ }
+                                .clickable { onNotificationClick() }
                                 .padding(4.dp)
                         )
                         // Notification badge
