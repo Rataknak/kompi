@@ -17,15 +17,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.kompi_app.FavoritesScreen
+import com.example.kompi_app.ProfileScreen
+// Removed incorrect import for DiscoverScreen as it is in the same package
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
     onLogout: () -> Unit = {},
-    onNotificationClick: () -> Unit = {}
+    onNotificationClick: () -> Unit = {},
+    onPersonalClick: () -> Unit = {},
+    onFavoritesClick: () -> Unit = {},
+    onLanguageClick: () -> Unit = {}
 ) {
-    var selectedTab by remember { mutableStateOf(0) }
+    var selectedTab by remember { mutableIntStateOf(0) }
 
     Scaffold(
         bottomBar = {
@@ -44,7 +48,12 @@ fun MainScreen(
                 0 -> HomeScreen(onNotificationClick = onNotificationClick)
                 1 -> DiscoverScreen()
                 2 -> FavoritesScreen()
-                3 -> ProfileScreen()
+                3 -> ProfileScreen(
+                    onLogout = onLogout,
+                    onPersonalClick = onPersonalClick,
+                    onFavoritesClick = onFavoritesClick,
+                    onLanguageClick = onLanguageClick
+                )
             }
         }
     }

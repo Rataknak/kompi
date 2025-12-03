@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.*
+import com.example.kompi_app.screen.FavoritesScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +27,23 @@ fun MyApp() {
             onLoginClick = { currentScreen = "main" }
         )
         "main" -> MainScreen(
-            onLogout = { currentScreen = "welcome" }
+            onLogout = { currentScreen = "welcome" },
+            onNotificationClick = { currentScreen = "notification" },
+            onPersonalClick = { currentScreen = "personal" },
+            onFavoritesClick = { currentScreen = "favorites_profile" },
+            onLanguageClick = { currentScreen = "language" }
+        )
+        "notification" -> NotificationScreen(
+            onBackClick = { currentScreen = "main" }
+        )
+        "personal" -> PersonalScreen(
+            onBackClick = { currentScreen = "main" }
+        )
+        "favorites_profile" -> FavoritesScreen(
+            onBackClick = { currentScreen = "main" }
+        )
+        "language" -> LanguageScreen(
+            onBackClick = { currentScreen = "main" }
         )
     }
 }

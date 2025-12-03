@@ -1,4 +1,4 @@
-package com.example.kompi_app
+package com.example.kompi_app.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -27,10 +27,12 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.kompi_app.R
 
 data class FavoriteBook(
     val id: Int,
@@ -156,24 +158,51 @@ fun FavoriteBookItem(book: FavoriteBook) {
                 .weight(1f)
                 .padding(vertical = 4.dp)
         ) {
+            // Title
+            Text(
+                text = book.title,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFF2E3A59),
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
+            )
+
+            Spacer(modifier = Modifier.height(4.dp))
+
+            // Author
+            Text(
+                text = book.author,
+                fontSize = 12.sp,
+                color = Color.Gray
+            )
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            // Bottom Row: Rating and Actions
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.Top
+                verticalAlignment = Alignment.CenterVertically
             ) {
+                // Rating
                 Text(
-                    text = book.title,
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color(0xFF2E3A59),
-                    modifier = Modifier.weight(1f)
+                    text = buildAnnotatedString {
+                        withStyle(style = SpanStyle(color = Color(0xFFFF7043), fontWeight = FontWeight.Bold)) {
+                            append(book.rating)
+                        }
+                        withStyle(style = SpanStyle(color = Color.Gray)) {
+                            append(" | Based on ${book.reviews}")
+                        }
+                    },
+                    fontSize = 11.sp
                 )
 
+                // Icons
                 Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(start = 8.dp)
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                     Icon(
+                    Icon(
                         imageVector = Icons.Filled.Favorite,
                         contentDescription = "Favorite",
                         tint = if (book.isFavorite.value) Color.Red else Color.Gray,
@@ -183,7 +212,7 @@ fun FavoriteBookItem(book: FavoriteBook) {
                                 book.isFavorite.value = !book.isFavorite.value
                             }
                     )
-                    Spacer(modifier = Modifier.width(4.dp))
+                    Spacer(modifier = Modifier.width(16.dp))
                     Icon(
                         imageVector = Icons.Filled.MoreVert,
                         contentDescription = "More",
@@ -192,28 +221,6 @@ fun FavoriteBookItem(book: FavoriteBook) {
                     )
                 }
             }
-            
-            Spacer(modifier = Modifier.height(4.dp))
-            
-            Text(
-                text = book.author,
-                fontSize = 12.sp,
-                color = Color.Gray
-            )
-            
-            Spacer(modifier = Modifier.height(8.dp))
-             
-            Text(
-                text = buildAnnotatedString {
-                    withStyle(style = SpanStyle(color = Color(0xFFFF7043), fontWeight = FontWeight.Bold)) {
-                        append(book.rating)
-                    }
-                    withStyle(style = SpanStyle(color = Color.Gray)) {
-                        append(" | Based on ${book.reviews}")
-                    }
-                },
-                fontSize = 11.sp
-            )
         }
     }
 }
